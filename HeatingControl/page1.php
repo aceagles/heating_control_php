@@ -1,3 +1,41 @@
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: index.html');
+	exit;
+}
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'phplogin';
+// Try and connect using the info above.
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if ( mysqli_connect_errno() ) {
+	// If there is an error with the connection, stop the script and display the error.
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+// Now we check if the data from the login form was submitted, isset() will check if the data exists.
+
+// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+if ($stmt = $con->prepare('SELECT isOn, toggle FROM status WHERE id = 1')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	
+	$stmt->execute();
+	// Store the result so we can check if the account exists in the database.
+	$stmt->store_result();
+	if ($stmt->num_rows > 0) {
+	$stmt->bind_result($isOn, $toggle);
+	$stmt->fetch();
+}
+	$stmt->close();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html  >
 <head>
@@ -31,9 +69,9 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <h3 class="mbr-section-title mb-4 mbr-fonts-style display-1">
-                    <strong>Heating is currently</strong><br><strong>OFF</strong></h3>
+                    <strong>Heating is currently</strong><br><strong><?php if($isOn == 1){echo 'ON';} else{ echo 'OFF';} ?></strong></h3>
                 
-                <div class="mbr-section-btn"><a class="btn btn-white display-4" href="https://mobiri.se">Toggle</a></div>
+                <div class="mbr-section-btn"><a class="btn btn-white display-4" href="toggle.php">Toggle</a></div>
             </div>
         </div>
     </div>
