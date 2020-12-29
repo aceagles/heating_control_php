@@ -1,3 +1,14 @@
+<?php
+session_start();
+// If the user is not logged in redirect to the login page...
+if (isset($_SESSION['loggedin'])) {
+	header('Location: page1.php');
+	exit;
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html  >
 <head>
@@ -10,7 +21,7 @@
   <meta name="description" content="">
   
   
-  <title>Home</title>
+  <title>Pentre Heating Controller - Login</title>
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
