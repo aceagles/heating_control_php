@@ -33,4 +33,5 @@ if ($stmt->num_rows > 0) {
 }
 	$stmt->close();
 }
+exit();
 ?>
