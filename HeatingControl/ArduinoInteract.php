@@ -32,7 +32,9 @@ if ($stmt->num_rows > 0) {
         $retval = mysql_query( $sql, $conn );
         echo "data been set";
     )
-} 
+} else {
+	echo "No Password";
+}
 	$stmt->close();
 }
 
