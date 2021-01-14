@@ -1,8 +1,8 @@
 <?php
 
-$DATABASE_HOST = 'localhost';
+$DATABASE_HOST = 'localhost:3306';
 $DATABASE_USER = 'root';
-$DATABASE_PASS = '';
+$DATABASE_PASS = '62c1IzHEyGAG';
 $DATABASE_NAME = 'phplogin';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
