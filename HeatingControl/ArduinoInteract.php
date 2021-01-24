@@ -32,9 +32,12 @@ if ($stmt = $con->prepare('SELECT id FROM accounts WHERE password = ?')) {
 
 		} elseif ($_POST['method'] == 'set'){
 			$sql = "UPDATE status SET isOn = ".$_POST['isOn'].", toggle = ".$_POST['toggle']." WHERE id = 1" ;
-			mysql_select_db($DATABASE_NAME);
-			$retval = mysql_query( $sql, $con);
-			echo "data been set";
+			echo $sql;
+			$stmt = $con -> prepare($sql);
+			$stmt->execute();
+			//mysql_select_db($DATABASE_NAME);
+			//$retval = mysql_query( $sql, $con);
+			//echo "data been set";
 		}
 	
 	}
