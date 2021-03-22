@@ -60,7 +60,13 @@ if ($stmt = $con->prepare('SELECT isOn, toggle FROM status WHERE id = 1')) {
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <h3 class="mbr-section-title mb-4 mbr-fonts-style display-1">
-                    <strong>Heating is currently</strong><br><strong><?php if($isOn == 1){echo 'ON';} else{ echo 'OFF';} ?></strong></h3>
+                    <strong>Heating is currently</strong><br><strong><?php if($isOn == 1){echo 'ON';} else{ echo 'OFF';} ?>
+                    <br />
+                    <?php
+                    if($toggle ==1){echo 'Heating will toggle within 20 seconds';}
+                    ?>
+                    
+                    </strong></h3>
                 
                 <div class="mbr-section-btn"><a class="btn btn-white display-4" href="toggle.php">Toggle</a></div>
             </div>
